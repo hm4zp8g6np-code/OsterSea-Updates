@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hm4zp8g6np-code/OsterSea-Updates/blob/main/schemas/release-manifest.schema.json",
+  "title": "OsterSea release manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "channel", "release"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "channel": {
+      "enum": ["stable", "test"]
+    },
+    "release": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["version", "publishedAt", "releaseNotesUrl", "products", "signature"],
+          "properties": {
+            "version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "publishedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "releaseNotesUrl": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://github\\.com/hm4zp8g6np-code/OsterSea-Updates/releases/"
+            },
+            "products": {
+              "type": "object",
+              "additionalProperties": false,
+              "minProperties": 1,
+              "properties": {
+                "STANDALONE": { "$ref": "#/$defs/product" },
+                "SERVER": { "$ref": "#/$defs/product" },
+                "CLIENT": { "$ref": "#/$defs/product" }
+              }
+            },
+            "signature": {
+              "$ref": "#/$defs/signature"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetName", "downloadUrl", "sizeBytes", "sha256"],
+      "properties": {
+        "assetName": {
+          "type": "string",
+          "pattern": "^OsterSea_(Standalone|Server|Client)_Setup_v[0-9]+\\.[0-9]+\\.[0-9]+\\.exe$"
+        },
+        "downloadUrl": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://github\\.com/hm4zp8g6np-code/OsterSea-Updates/releases/download/"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "keyId", "value"],
+      "properties": {
+        "algorithm": {
+          "type": "string"
+        },
+        "keyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
