@@ -1,0 +1,56 @@
+# OsterSea public distribution repository
+# Never publish operational data, credentials, license material, or source trees.
+
+# Databases and backups
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.bak
+*.backup
+*.zip.tmp
+
+# Licenses, activation requests, and cryptographic key material
+*.ostersea-license.json
+*activation-request*.json
+*.pem
+*.pfx
+*.p12
+*.key
+*.snk
+*PRIVATE_KEY*
+*private-key*
+license-registry.json
+
+# Vessel and user data
+data/
+Data/
+backups/
+Backups/
+config/
+Config/
+documents/
+Documents/
+reports/
+Reports/
+logs/
+Logs/
+
+# Build and source artifacts do not belong in this repository
+src/
+tools/
+bin/
+obj/
+.vs/
+.idea/
+__pycache__/
+*.user
+*.suo
+
+# Release packages are attached to GitHub Releases, not committed to Git
+*.exe
+*.msi
+*.msix
+*.nupkg
+*.zip
+*.7z
