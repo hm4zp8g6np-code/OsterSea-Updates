@@ -4,6 +4,10 @@ Official installers and signed updates for **OsterSea Vessel Operations**.
 
 > This repository is public and contains distribution files only. The OsterSea source code, operational databases, license files, customer data, and private keys are not stored here.
 
+## Isolert lokal webapp v0.0.3
+
+[Last ned v0.0.3-testpakken](https://github.com/hm4zp8g6np-code/OsterSea-Updates/releases/tag/v0.0.3-isolated.1) og se [installasjonsveiledningen](docs/v0.0.3-isolated.1.md). Dette er en separat, usignert prerelease for isolerte testdata. Automatisk oppdateringssjekk skjer uten innlogging i egen testkanal; den eksisterende signerte latest.json-kanalen og eldre installasjoner endres ikke. Faktisk overtakelse av skriverett er fortsatt sperret.
+
 ## Current status
 
 No production release is published yet. The root [`latest.json`](latest.json) intentionally contains `"release": null`, so an OsterSea installation must treat the channel as having no available update.
